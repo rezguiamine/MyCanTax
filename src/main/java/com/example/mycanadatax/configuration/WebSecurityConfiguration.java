@@ -16,25 +16,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class WebSecurityConfiguration {
 
     private final JwtRequestFilter jwtRequestFilter;
-
     @Autowired
     public WebSecurityConfiguration(JwtRequestFilter jwtRequestFilter) {
         this.jwtRequestFilter = jwtRequestFilter;
     }
-
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
         return security.csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/signup", "/login").permitAll()
+                .requestMatchers("/api/appointments/**").permitAll()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/api/**")
                 .authenticated()
@@ -55,5 +52,4 @@ public class WebSecurityConfiguration {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
-
 }

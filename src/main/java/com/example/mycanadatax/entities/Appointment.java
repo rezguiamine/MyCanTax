@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-public class Appointment {
+public class  Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,6 +21,7 @@ public class Appointment {
     private LocalDate appointmentDate;
     private LocalTime appointmentTime;
 
+
     // Constructors
     public Appointment() {}
 
@@ -31,7 +32,11 @@ public class Appointment {
         this.phoneNumber = phoneNumber;
         this.appointmentDate = appointmentDate;
         this.appointmentTime = appointmentTime;
+
     }
+
+
+
 
     public Long getId() {
         return id;
